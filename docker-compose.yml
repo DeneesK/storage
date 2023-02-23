@@ -17,16 +17,22 @@ services:
   storage:
     build:
       context: ./src
-    ports:
-      - "${DOCKER_API_PORT}:8000"
     env_file:
       - .env
     depends_on:
       - db
     entrypoint: >
-      sh -c "sleep 10
+      sh -c "sleep 5
       && alembic upgrade head
       && python -m gunicorn --name url_service -k uvicorn.workers.UvicornWorker -w 2 -b 0.0.0.0:8000 main:app"
+  nginx:
+    image: nginx:1.21.3-alpine
+    ports:
+      - "${DOCKER_API_PORT}:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - storage
 volumes:
   db:
   cache:
