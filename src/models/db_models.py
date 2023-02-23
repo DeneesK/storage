@@ -29,5 +29,5 @@ class File(Base):
     is_downloadable = Column(Boolean, default=True)
     path = Column(Text, unique=False)
     size = Column(Integer, unique=False)
-    user_id = Column(ForeignKey('user.id'), nullable=False)
+    user_id = Column(ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
     user = relationship('User', back_populates='file')

@@ -40,6 +40,8 @@ async def upload_file(authorization: str = Header(description='Authorization: Be
                       token_service: TokenService = Depends(get_token_service)) -> FileInfo:
     if user_id := await token_service.check_token(authorization):
         new_file = await file_servise.upload_file(file, path, user_id.decode())
+        if not new_file:
+            return Response(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, content='Atempt to upload file failed')
         return FileInfo.parse_obj(new_file.__dict__)
     return Response(status_code=status.HTTP_403_FORBIDDEN, content='token does not exist or is out of date')
 

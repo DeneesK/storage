@@ -21,10 +21,7 @@ services:
       - .env
     depends_on:
       - db
-    entrypoint: >
-      sh -c "sleep 5
-      && alembic upgrade head
-      && python -m gunicorn --name url_service -k uvicorn.workers.UvicornWorker -w 2 -b 0.0.0.0:8000 main:app"
+    entrypoint: "make start"
   nginx:
     image: nginx:1.21.3-alpine
     ports:

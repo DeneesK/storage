@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 
 
 class FileService(DBObjectService):
-    async def upload_file(self, file: UploadFile, path: str, user_id: str) -> File:
+    async def upload_file(self, file: UploadFile, path: str, user_id: str) -> File | None:
         size = 0
         if not path:
             path = '.'
@@ -33,6 +33,7 @@ class FileService(DBObjectService):
                     size += contents.__sizeof__()
         except Exception as ex:
             logger.error(ex)
+            return None
         new_file = File(path=f'{path}/{file.filename}', name=file.filename, user_id=user_id, size=size)
         self.db_session.add(new_file)
         await self.db_session.commit()
