@@ -2,7 +2,7 @@
 - `cp env.sample .env`
 - `docker-compose up`
 #### then:
-`http://127.0.0.1:8000/api/openapi`
+`http://127.0.0.1:8080/api/openapi`
 
 
 # Проектное задание пятого спринта
