@@ -1,13 +1,14 @@
+# File Storage
+
+File storage that allows you to store various types of files - documents, photos, other data.
+
 ### To launch:
 - `cp env.sample .env`
 - `docker-compose up`
 #### then:
 `http://127.0.0.1:8080/api/openapi`
 
-File storage that allows you to store various types of files - documents, photos, other data.
-
-<details>
-<summary> Endpoints List: </summary>
+## Endpoints List:
 
 1.Activity status of related services
 
