@@ -7,7 +7,7 @@
 File storage that allows you to store various types of files - documents, photos, other data.
 
 <details>
-<summary> Список необходимых эндпойнтов </summary>
+<summary> Endpoints List: </summary>
 
 1.Activity status of related services
 
